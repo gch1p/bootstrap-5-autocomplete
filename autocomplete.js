@@ -96,7 +96,7 @@ class Autocomplete {
         this.field.value = e.target.innerText;
         if (this.options.onSelectItem)
           this.options.onSelectItem({
-            value: e.target.value,
+            value: e.target.dataset.value,
             label: e.target.innerText,
           });
         this.dropdown.hide();
