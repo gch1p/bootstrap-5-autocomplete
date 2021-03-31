@@ -46,6 +46,7 @@ class Autocomplete {
 
   setData(data) {
     this.options.data = data;
+    this.renderIfNeeded();
   }
 
   renderIfNeeded() {
