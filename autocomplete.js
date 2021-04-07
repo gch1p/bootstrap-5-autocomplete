@@ -41,6 +41,10 @@ class Autocomplete {
         this.dropdown.hide();
         return;
       }
+      if (e.keyCode === 40) {
+        this.dropdown._menu.children[0]?.focus();
+        return;
+      }
     });
   }
 
