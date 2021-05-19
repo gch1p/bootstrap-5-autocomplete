@@ -12,7 +12,7 @@ class Autocomplete {
     this.dropdown = null;
 
     field.parentNode.classList.add('dropdown');
-    field.setAttribute('data-toggle', 'dropdown');
+    field.setAttribute('data-bs-toggle', 'dropdown');
     field.classList.add('dropdown-toggle');
 
     const dropdown = ce(`<div class="dropdown-menu" ></div>`);
