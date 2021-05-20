@@ -76,7 +76,7 @@ class Autocomplete {
       label = item.label;
     }
 
-    if (this.options.displayLabelWithValue) {
+    if (this.options.showValue) {
       label += ` ${item.value}`;
     }
 
