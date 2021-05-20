@@ -3,6 +3,8 @@ const DEFAULTS = {
   maximumItems: 5,
   highlightTyped: true,
   highlightClass: 'text-primary',
+  label: 'label',
+  value: 'value'
 };
 
 class Autocomplete {
@@ -15,7 +17,7 @@ class Autocomplete {
     field.setAttribute('data-bs-toggle', 'dropdown');
     field.classList.add('dropdown-toggle');
 
-    const dropdown = ce(`<div class="dropdown-menu" ></div>`);
+    const dropdown = ce(`<div class="dropdown-menu"></div>`);
     if (this.options.dropdownClass)
       dropdown.classList.add(this.options.dropdownClass);
 
@@ -84,10 +86,17 @@ class Autocomplete {
     const items = this.field.nextSibling;
     items.innerHTML = '';
 
+    const keys = Object.keys(this.options.data);
+
     let count = 0;
-    for (let i = 0; i < this.options.data.length; i++) {
-      const {label, value} = this.options.data[i];
-      const item = {label, value};
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      const entry = this.options.data[key];
+      const item = {
+          label: this.options.label ? entry[this.options.label] : key,
+          value: this.options.value ? entry[this.options.value] : entry
+      };
+
       if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
         items.appendChild(this.createItem(lookup, item));
         if (this.options.maximumItems > 0 && ++count >= this.options.maximumItems)
