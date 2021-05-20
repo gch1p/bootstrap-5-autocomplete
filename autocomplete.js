@@ -4,7 +4,8 @@ const DEFAULTS = {
   highlightTyped: true,
   highlightClass: 'text-primary',
   label: 'label',
-  value: 'value'
+  value: 'value',
+  displayLabelWithValue: false,
 };
 
 class Autocomplete {
@@ -23,7 +24,7 @@ class Autocomplete {
 
     insertAfter(dropdown, field);
 
-    this.dropdown = new bootstrap.Dropdown(field, this.options.dropdownOptions)
+    this.dropdown = new bootstrap.Dropdown(field, this.options.dropdownOptions);
 
     field.addEventListener('click', (e) => {
       if (this.createItems() === 0) {
@@ -67,13 +68,19 @@ class Autocomplete {
     if (this.options.highlightTyped) {
       const idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
       const className = Array.isArray(this.options.highlightClass) ? this.options.highlightClass.join(' ')
-        : (typeof this.options.highlightClass == 'string' ? this.options.highlightClass : '')
+        : (typeof this.options.highlightClass == 'string' ? this.options.highlightClass : '');
       label = item.label.substring(0, idx)
         + `<span class="${className}">${item.label.substring(idx, idx + lookup.length)}</span>`
         + item.label.substring(idx + lookup.length, item.label.length);
-    } else
+    } else {
       label = item.label;
-    return ce(`<button type="button" class="dropdown-item" data-value="${item.value}">${label}</button>`);
+    }
+
+    if (this.options.displayLabelWithValue) {
+      label += ` ${item.value}`;
+    }
+
+    return ce(`<button type="button" class="dropdown-item" data-label="${item.label}" data-value="${item.value}">${label}</button>`);
   }
 
   createItems() {
@@ -106,13 +113,18 @@ class Autocomplete {
 
     this.field.nextSibling.querySelectorAll('.dropdown-item').forEach((item) => {
       item.addEventListener('click', (e) => {
+        let dataLabel = e.target.getAttribute('data-label');
         let dataValue = e.target.getAttribute('data-value');
-        this.field.value = e.target.innerText;
-        if (this.options.onSelectItem)
+
+        this.field.value = dataLabel;
+
+        if (this.options.onSelectItem) {
           this.options.onSelectItem({
-            value: e.target.dataset.value,
-            label: e.target.innerText,
+            value: dataValue,
+            label: dataLabel
           });
+        }
+
         this.dropdown.hide();
       })
     });
@@ -137,5 +149,5 @@ function ce(html) {
  * @returns {*}
  */
 function insertAfter(elem, refElem) {
-  return refElem.parentNode.insertBefore(elem, refElem.nextSibling)
+  return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
