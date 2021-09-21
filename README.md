@@ -65,7 +65,7 @@ The class of the dropdown-menu element, which is the box that is displayed. Can 
 The class to use when highlighting typed text on items. Only used when highlightTyped is true. Default is text-primary. Can take a string or an array of strings.
 
 **highlightTyped**:  
-Wether to highlight (style) typed text on items. Default is true.
+Whether to highlight (style) typed text on items. Default is true.
 
 **label**:  
 The name of the `label` key in your data. The label is what will be shown on each item in the autocomplete list.
@@ -84,8 +84,8 @@ A callback that is fired every time an item is selected. It receives an object i
 **showValue**:  
 If set to true, will display the value of the entry after the label in the dropdown list.
 
-**showValueBeforeLabel**
-If set to true and **`showValue`** also set to true, the value will be displayed before the label.
+**showValueBeforeLabel**:  
+If set to true and `showValue` also set to true, the value will be displayed before the label.
 
 **treshold**:  
 The number of characters that need to be typed on the input in order to trigger the autocomplete. Default is 4.
