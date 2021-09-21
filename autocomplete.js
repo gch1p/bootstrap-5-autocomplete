@@ -6,6 +6,7 @@ const DEFAULTS = {
   label: 'label',
   value: 'value',
   showValue: false,
+  showValueBeforeLabel: false,
 };
 
 class Autocomplete {
@@ -77,7 +78,11 @@ class Autocomplete {
     }
 
     if (this.options.showValue) {
-      label += ` ${item.value}`;
+      if (this.options.showValueBeforeLabel) {
+        label = `${item.value} ${label}`;
+      } else {
+        label += ` ${item.value}`;
+      }
     }
 
     return ce(`<button type="button" class="dropdown-item" data-label="${item.label}" data-value="${item.value}">${label}</button>`);
