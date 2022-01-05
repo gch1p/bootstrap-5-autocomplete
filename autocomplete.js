@@ -1,5 +1,5 @@
 const DEFAULTS = {
-  treshold: 2,
+  threshold: 2,
   maximumItems: 5,
   highlightTyped: true,
   highlightClass: 'text-primary',
@@ -90,7 +90,7 @@ class Autocomplete {
 
   createItems() {
     const lookup = this.field.value;
-    if (lookup.length < this.options.treshold) {
+    if (lookup.length < this.options.threshold) {
       this.dropdown.hide();
       return 0;
     }

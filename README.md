@@ -87,7 +87,7 @@ If set to true, will display the value of the entry after the label in the dropd
 **showValueBeforeLabel**:  
 If set to true and `showValue` also set to true, the value will be displayed before the label.
 
-**treshold**:  
+**threshold**:  
 The number of characters that need to be typed on the input in order to trigger the autocomplete. Default is 4.
 
 **value**:  
