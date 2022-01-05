@@ -67,7 +67,9 @@ class Autocomplete {
   createItem(lookup, item) {
     let label;
     if (this.options.highlightTyped) {
-      const idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
+      const idx = removeDiacritics(item.label)
+          .toLowerCase()
+          .indexOf(removeDiacritics(lookup).toLowerCase());
       const className = Array.isArray(this.options.highlightClass) ? this.options.highlightClass.join(' ')
         : (typeof this.options.highlightClass == 'string' ? this.options.highlightClass : '');
       label = item.label.substring(0, idx)
@@ -109,7 +111,7 @@ class Autocomplete {
           value: this.options.value ? entry[this.options.value] : entry
       };
 
-      if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
+      if (removeDiacritics(item.label).toLowerCase().indexOf(removeDiacritics(lookup).toLowerCase()) >= 0) {
         items.appendChild(this.createItem(lookup, item));
         if (this.options.maximumItems > 0 && ++count >= this.options.maximumItems)
           break;
@@ -155,4 +157,14 @@ function ce(html) {
  */
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+}
+
+/**
+ * @param {String} str
+ * @returns {String}
+ */
+function removeDiacritics(str) {
+  return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
 }
