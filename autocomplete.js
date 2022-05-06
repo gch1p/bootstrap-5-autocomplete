@@ -36,11 +36,11 @@ class Autocomplete {
       }
     });
 
-    field.addEventListener('input', () => {
+    field.addEventListener('input', debounce(() => {
       if (this.options.onInput)
         this.options.onInput(this.field.value);
       this.renderIfNeeded();
-    });
+    }));
 
     field.addEventListener('keydown', (e) => {
       if (e.keyCode === 27) {
@@ -169,6 +169,18 @@ function removeDiacritics(str) {
   return str
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
+ * @param {function} func, {int} timeout
+ * @returns {function}
+ */
+function debounce(func, timeout=300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
 }
 
 export { Autocomplete };
