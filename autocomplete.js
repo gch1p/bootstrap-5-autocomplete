@@ -169,5 +169,5 @@ function removeDiacritics(str) {
       .replace(/[\u0300-\u036f]/g, '');
 }
 
-module.exports = Autocomplete;
+export { Autocomplete };
 
