@@ -1,3 +1,5 @@
+import * as bootstrap from 'bootstrap'
+
 const DEFAULTS = {
   threshold: 2,
   maximumItems: 5,
