@@ -120,8 +120,8 @@ class Autocomplete {
 
     this.field.nextSibling.querySelectorAll('.dropdown-item').forEach((item) => {
       item.addEventListener('click', (e) => {
-        let dataLabel = e.target.getAttribute('data-label');
-        let dataValue = e.target.getAttribute('data-value');
+        let dataLabel = e.currentTarget.getAttribute('data-label');
+        let dataValue = e.currentTarget.getAttribute('data-value');
 
         this.field.value = dataLabel;
 
