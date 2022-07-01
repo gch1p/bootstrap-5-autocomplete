@@ -1,0 +1,20 @@
+{
+  "name": "bootstrap-5-autocomplete",
+  "version": "1.0.0",
+  "description": "A simple autocomplete/typeahead for Bootstrap 5",
+  "main": "autocomplete.js",
+  "keywords": [
+    "bootstrap",
+    "autocomplete",
+    "typeahead"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gch1p/bootstrap-5-autocomplete"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}

@@ -1,3 +1,5 @@
+import * as bootstrap from 'bootstrap'
+
 const DEFAULTS = {
   threshold: 2,
   maximumItems: 5,
@@ -168,3 +170,5 @@ function removeDiacritics(str) {
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
 }
+
+export { Autocomplete };
