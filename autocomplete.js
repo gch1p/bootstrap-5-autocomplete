@@ -9,6 +9,7 @@ const DEFAULTS = {
   value: 'value',
   showValue: false,
   showValueBeforeLabel: false,
+  debounceTimeout: 300,
 };
 
 class Autocomplete {
@@ -40,7 +41,7 @@ class Autocomplete {
       if (this.options.onInput)
         this.options.onInput(this.field.value);
       this.renderIfNeeded();
-    }));
+    }, this.options.debounceTimeout));
 
     field.addEventListener('keydown', (e) => {
       if (e.keyCode === 27) {
@@ -178,8 +179,11 @@ function removeDiacritics(str) {
 function debounce(func, timeout=300) {
   let timer;
   return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    if (timeout <= 0) func.apply(this, args);
+    else {
+      clearTimeout(timer);
+      timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    }
   };
 }
 

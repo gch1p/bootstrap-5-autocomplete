@@ -55,6 +55,11 @@ The data from where autocomplete will lookup items to show. This data can be a s
 
     {"label": "This is a text", "value": 42}
 
+**debounceTimeout**:
+Delay in milliseconds after any key stroke in the widget before the autocomplete query will be run.
+This is particularly useful when autocompletion queries a backend server, as it avoids multiple queries when a user quickly types several characters.
+Default is 300. You can also set it to 0 to completely disable debouncing.
+
 **dropdownOptions**:  
 It's the same options from Bootstrap's Dropdown, documented [here](https://getbootstrap.com/docs/5.0/components/dropdowns/#options).
 
