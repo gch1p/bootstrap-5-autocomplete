@@ -113,7 +113,7 @@ class Autocomplete {
           value: this.options.value ? entry[this.options.value] : entry
       };
 
-      if (removeDiacritics(item.label).toLowerCase().indexOf(removeDiacritics(lookup).toLowerCase()) >= 0) {
+      if (removeDiacritics(item.label).toLowerCase().startsWith(removeDiacritics(lookup).toLowerCase())) {
         items.appendChild(this.createItem(lookup, item));
         if (this.options.maximumItems > 0 && ++count >= this.options.maximumItems)
           break;
